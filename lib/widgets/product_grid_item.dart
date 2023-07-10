@@ -1,12 +1,15 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_siin_shop/constants/color_const.dart';
+import 'package:flutter_siin_shop/models/product_model.dart';
 
 class ProductGridItem extends StatelessWidget {
-  final int? off;
+  final Product product;
   final int addedToCart;
 
-  const ProductGridItem({super.key, this.off = 20, this.addedToCart = 0});
+  const ProductGridItem(
+      {super.key, required this.product, this.addedToCart = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +36,13 @@ class ProductGridItem extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 25.0, bottom: 15.0),
                         child: CachedNetworkImage(
                           fit: BoxFit.contain,
-                          imageUrl:
-                              "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+                          imageUrl: product.image,
                         ),
                       ),
                     ),
                   ],
                 ),
-                if (off != null)
+                if (product.off != 0)
                   Positioned(
                     top: 15.0,
                     left: 0,
@@ -54,7 +56,7 @@ class ProductGridItem extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        "-$off%",
+                        "-${product.off}%",
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -78,9 +80,10 @@ class ProductGridItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 5.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Elemis",
+                  product.title,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.grey.shade500,
                       ),
@@ -89,7 +92,7 @@ class ProductGridItem extends StatelessWidget {
                   height: 3.0,
                 ),
                 Text(
-                  "Pro-Collagen Marine lorem ipsum dolor ismet which odor vue te lorem",
+                  product.description,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.normal,
@@ -101,36 +104,29 @@ class ProductGridItem extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      flex: 3,
-                      child: Text(
-                        "BD 16.82",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(
-                                fontWeight: FontWeight.normal,
-                                color: Colors.grey.shade700),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 3.0,
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: FittedBox(
-                        child: Text(
-                          "BD 26.30",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleSmall
-                              ?.copyWith(
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.lineThrough,
-                                  color: Colors.grey.shade600),
+                      child: AutoSizeText.rich(
+                        TextSpan(
+                          text: 'BD ${product.price.toStringAsFixed(2)}  ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                fontWeight: FontWeight.normal,),
+                          children: [
+                            TextSpan(
+                              text: 'BD ${product.oldPrice.toStringAsFixed(2)}',
+                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    fontWeight: FontWeight.normal,
+                                    decoration: TextDecoration.lineThrough,
+                                    color: Colors.grey.shade600),
+                            ),
+                          ],
                         ),
+                        maxLines: 1,
+                        minFontSize: 12,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    Spacer(),
                     addedToCart == 0
                         ? Icon(
                             Icons.add_circle_outline_rounded,
@@ -138,7 +134,10 @@ class ProductGridItem extends StatelessWidget {
                           )
                         : CircleAvatar(
                             radius: 10.0,
-                            child: Text(addedToCart.toString(), style: TextStyle(fontSize: 10.0),),
+                            child: Text(
+                              addedToCart.toString(),
+                              style: TextStyle(fontSize: 10.0),
+                            ),
                           ),
                     SizedBox(
                       width: 5.0,

@@ -5,14 +5,14 @@ import 'package:flutter_siin_shop/utils/helper_functions.dart';
 import 'package:flutter_siin_shop/widgets/video_card.dart';
 import 'package:stacked/stacked.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  const HomeView({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeViewState extends State<HomeView> {
 
   final feedViewModel = locator<FeedViewModel>();
 

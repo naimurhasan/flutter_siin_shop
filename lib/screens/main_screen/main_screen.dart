@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_siin_shop/screens/cart_screen/cart_screen.dart';
-import 'package:flutter_siin_shop/screens/category_screen/category_screen.dart';
+import 'package:flutter_siin_shop/screens/category_screen/category_view.dart';
 import 'package:flutter_siin_shop/screens/home_screen/home_view.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -28,8 +28,8 @@ class _MainScreenState extends State<MainScreen> {
 
   /// sub screens list
   final List<Widget> bottomBarPages = [
-    const CategoryScreen(),
-    const HomeScreen(),
+    const CategoryView(),
+    const HomeView(),
     const CartScreen(),
   ];
 

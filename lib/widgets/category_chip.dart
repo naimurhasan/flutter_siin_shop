@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_siin_shop/constants/color_const.dart';
+import 'package:flutter_siin_shop/models/category_model.dart';
+import 'package:flutter_siin_shop/utils/helper_functions.dart';
 
 class CatChip extends StatelessWidget {
-  final String title;
-  final IconData icon;
+  final Category category;
   final bool isActive;
-  const CatChip({super.key, required this.title, required this.icon, this.isActive = false});
+  const CatChip({super.key, required this.category,  this.isActive = false,});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +24,9 @@ class CatChip extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: isActive ? KColors.primary : KColors.primaryInactive, ),
+            Icon(Icons.local_fire_department, color: isActive ? KColors.primary : KColors.primaryInactive, ),
             SizedBox(width: 5.0,),
-            Text(title, style: TextStyle(color: isActive ? KColors.primary : KColors.primaryInactive, ),),
+            Text(category.name.capitalize(), style: TextStyle(color: isActive ? KColors.primary : KColors.primaryInactive, ),),
           ],
         ),
       ),
