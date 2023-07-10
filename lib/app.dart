@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: kRouterConfig,
+      debugShowCheckedModeBanner: false,
       title: AppConfig.name,
       theme: ThemeData(
         primarySwatch: Colors.blue,

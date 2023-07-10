@@ -1,7 +1,9 @@
-import 'dart:developer';
-
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_siin_shop/screens/cart_screen/cart_screen.dart';
+import 'package:flutter_siin_shop/screens/category_screen/category_screen.dart';
+import 'package:flutter_siin_shop/screens/home_screen/home_scree.dart';
+import 'package:flutter_siin_shop/utils/helper_functions.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -17,20 +19,17 @@ class _MainScreenState extends State<MainScreen> {
   /// Controller to handle bottom nav bar and also handles initial page
   final _controller = NotchBottomBarController(index: 0);
 
-  int maxCount = 4;
-
   @override
   void dispose() {
     _pageController.dispose();
     super.dispose();
   }
 
-  /// widget list
+  /// sub screens list
   final List<Widget> bottomBarPages = [
-    const Page1(),
-    const Page2(),
-    const Page4(),
-    const Page5(),
+    const HomeScreen(),
+    const CategoryScreen(),
+    const CartScreen(),
   ];
 
   @override
@@ -43,8 +42,7 @@ class _MainScreenState extends State<MainScreen> {
             bottomBarPages.length, (index) => bottomBarPages[index]),
       ),
       extendBody: true,
-      bottomNavigationBar: (bottomBarPages.length <= maxCount)
-          ? AnimatedNotchBottomBar(
+      bottomNavigationBar: AnimatedNotchBottomBar(
         /// Provide NotchBottomBarController
         notchBottomBarController: _controller,
         color: Colors.white,
@@ -54,8 +52,8 @@ class _MainScreenState extends State<MainScreen> {
         removeMargins: true,
         bottomBarWidth: 500,
         durationInMilliSeconds: 300,
-        bottomBarItems: [
-          const BottomBarItem(
+        bottomBarItems: const [
+           BottomBarItem(
             inActiveItem: Icon(
               Icons.home_filled,
               color: Colors.blueGrey,
@@ -64,91 +62,39 @@ class _MainScreenState extends State<MainScreen> {
               Icons.home_filled,
               color: Colors.blueAccent,
             ),
-            itemLabel: 'Page 1',
+            itemLabel: 'Home',
           ),
-          const BottomBarItem(
+          BottomBarItem(
             inActiveItem: Icon(
-              Icons.star,
+              Icons.grid_view,
               color: Colors.blueGrey,
             ),
             activeItem: Icon(
-              Icons.star,
+              Icons.grid_view,
               color: Colors.blueAccent,
             ),
-            itemLabel: 'Page 2',
+            itemLabel: 'Cats',
           ),
-
-          const BottomBarItem(
+          BottomBarItem(
             inActiveItem: Icon(
-              Icons.settings,
+              Icons.shopping_cart,
               color: Colors.blueGrey,
             ),
             activeItem: Icon(
-              Icons.settings,
+              Icons.shopping_cart,
               color: Colors.pink,
             ),
-            itemLabel: 'Page 4',
-          ),
-          const BottomBarItem(
-            inActiveItem: Icon(
-              Icons.person,
-              color: Colors.blueGrey,
-            ),
-            activeItem: Icon(
-              Icons.person,
-              color: Colors.yellow,
-            ),
-            itemLabel: 'Page 5',
+            itemLabel: 'Cart',
           ),
         ],
         onTap: (index) {
-          /// perform action on tab change and to update pages you can update pages without pages
-          log('current selected index $index');
+          /// update page
+          dPrint('current selected index $index');
           _pageController.jumpToPage(index);
         },
-      )
-          : null,
+      ),
     );
   }
 }
 
-class Page1 extends StatelessWidget {
-  const Page1({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.yellow, child: const Center(child: Text('Page 1')));
-  }
-}
-
-class Page2 extends StatelessWidget {
-  const Page2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.green, child: const Center(child: Text('Page 2')));
-  }
-}
-
-class Page4 extends StatelessWidget {
-  const Page4({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.blue, child: const Center(child: Text('Page 4')));
-  }
-}
-
-class Page5 extends StatelessWidget {
-  const Page5({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.lightGreenAccent,
-        child: const Center(child: Text('Page 5')));
-  }
-}
