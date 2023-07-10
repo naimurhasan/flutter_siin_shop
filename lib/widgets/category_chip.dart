@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_siin_shop/constants/color_const.dart';
+import 'package:flutter_siin_shop/injection_container.dart';
 import 'package:flutter_siin_shop/models/category_model.dart';
+import 'package:flutter_siin_shop/screens/category_screen/category_view_model.dart';
 import 'package:flutter_siin_shop/utils/helper_functions.dart';
 
 class CatChip extends StatelessWidget {
@@ -10,6 +12,8 @@ class CatChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final vm = locator<CategoryViewModel>();
+    bool isActive = vm.selectedCategory == category;
     return Container(
       decoration: BoxDecoration(
           color: isActive ? KColors.accentLight : KColors.accentInactive,
@@ -20,6 +24,12 @@ class CatChip extends StatelessWidget {
       margin: const EdgeInsets.only(right: 10.0),
       child: InkWell(
         onTap: (){
+          dPrint("INKWELL ON TAP ${category.name}");
+          if(isActive) {
+            vm.actionFilterCat(null);
+          } else {
+            vm.actionFilterCat(category);
+          }
         },
         child: Row(
           mainAxisSize: MainAxisSize.min,

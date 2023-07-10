@@ -29,6 +29,7 @@ class CategoryView extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0).copyWith(top: 10.0),
             child: TextField(
+              onChanged: (val) => catViewModel.actionFilterSearch(val),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12.0),
@@ -61,15 +62,14 @@ class CategoryView extends StatelessWidget {
           Expanded(child:
           GridView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
-
+            itemCount: catViewModel.productList.length,
             shrinkWrap: true,
             physics: BouncingScrollPhysics(),
-
             gridDelegate: const FlutterzillaFixedGridView(
                 crossAxisCount: 2,
                 mainAxisSpacing: 6,
                 crossAxisSpacing: 6,
-                height: 250),
+                height: 210),
             itemBuilder: (BuildContext context, int index) {
               return ProductGridItem(product: catViewModel.productList[index],);
             },
