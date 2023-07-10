@@ -1,4 +1,4 @@
-var demoData = [
+var videoDemoData = [
   {
     "id": "1",
     "video_title": "Video 1",

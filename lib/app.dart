@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_siin_shop/app_config.dart';
 import 'package:flutter_siin_shop/router_config.dart';
+import 'package:flutter_siin_shop/screens/main_screen/main_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

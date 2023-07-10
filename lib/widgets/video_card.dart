@@ -62,7 +62,7 @@ class VideoCard extends StatelessWidget {
                   "https://www.andersonsobelcosmetic.com/wp-content/uploads/2018/09/chin-implant-vs-fillers-best-for-improving-profile-bellevue-washington-chin-surgery.jpg"),
             ),
             VideoDescription(video.user, video.videoTitle, video.songName),
-            const SizedBox(height: 100),
+            const SizedBox(height: 10),
           ],
         ),
       ],

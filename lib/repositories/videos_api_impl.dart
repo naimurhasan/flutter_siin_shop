@@ -17,7 +17,7 @@ class VideosAPIImpl implements VideosAPI{
 
     var videoList = <Video>[];
 
-    demoData.forEach((element) {
+    videoDemoData.forEach((element) {
       Video video = Video.fromJson(element);
       videoList.add(video);
     });

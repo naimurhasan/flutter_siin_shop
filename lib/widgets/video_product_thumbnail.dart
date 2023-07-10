@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_siin_shop/constants/color_const.dart';
 
 class VideoProductThumbnail extends StatelessWidget {
   final String imageUrl;
@@ -28,7 +29,7 @@ class VideoProductThumbnail extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.fromLTRB(8.0, 1.0, 13, 1),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
+                  color: KColors.badgeBg,
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(7),
                     bottomRight: Radius.circular(7),
