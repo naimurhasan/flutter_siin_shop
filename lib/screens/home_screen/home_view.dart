@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_siin_shop/injection_container.dart';
-import 'package:flutter_siin_shop/screens/home_screen/feed_view_model.dart';
+import 'package:flutter_siin_shop/screens/home_screen/home_view_model.dart';
 import 'package:flutter_siin_shop/utils/helper_functions.dart';
 import 'package:flutter_siin_shop/widgets/video_card.dart';
 import 'package:stacked/stacked.dart';
@@ -15,14 +15,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   final feedViewModel = locator<FeedViewModel>();
-
-  void playFirstOne() async{
-    dPrint("Video Length ${feedViewModel.videoSource?.listVideos.length}");
-    if(feedViewModel.videoSource?.listVideos.isNotEmpty==true){
-      await feedViewModel.videoSource?.listVideos[0].loadController();
-      feedViewModel.changeVideo(0);
-    }
-  }
 
   @override
   void initState() {

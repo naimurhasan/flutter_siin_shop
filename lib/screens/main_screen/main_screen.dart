@@ -2,7 +2,7 @@ import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_not
 import 'package:flutter/material.dart';
 import 'package:flutter_siin_shop/screens/cart_screen/cart_screen.dart';
 import 'package:flutter_siin_shop/screens/category_screen/category_screen.dart';
-import 'package:flutter_siin_shop/screens/home_screen/home_screen.dart';
+import 'package:flutter_siin_shop/screens/home_screen/home_view.dart';
 import 'package:flutter_siin_shop/utils/helper_functions.dart';
 
 class MainScreen extends StatefulWidget {
