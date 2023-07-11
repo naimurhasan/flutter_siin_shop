@@ -31,6 +31,12 @@ class FeedViewModel extends BaseViewModel {
 
   }
 
+  void pauseCurrentVideo(){
+    if (videoSource!.listVideos[prevVideo].controller != null) {
+      videoSource!.listVideos[prevVideo].controller!.pause();
+    }
+  }
+
   void loadVideo(int index) async {
     if (videoSource!.listVideos.length > index) {
       await videoSource!.listVideos[index].loadController();

@@ -4,6 +4,7 @@ import 'package:flutter_siin_shop/screens/cart_screen/cart_view.dart';
 import 'package:flutter_siin_shop/screens/cart_screen/cart_view_model.dart';
 import 'package:flutter_siin_shop/screens/category_screen/category_view.dart';
 import 'package:flutter_siin_shop/screens/home_screen/home_view.dart';
+import 'package:flutter_siin_shop/screens/home_screen/home_view_model.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:badges/badges.dart' as badges;
@@ -116,6 +117,9 @@ class _MainScreenState extends State<MainScreen> {
                       _pageController.animateToPage(index,
                           duration: Duration(milliseconds: 250),
                           curve: Curves.bounceInOut);
+                      if(index != 0){
+                        locator<FeedViewModel>().pauseCurrentVideo();
+                      }
                     },
                   );
                 },
