@@ -42,6 +42,7 @@ class KColorVariationButton extends StatelessWidget {
   final Color color;
   final bool isSelected;
   final bool isDisabled;
+  final double radius;
   final Function(Color color)? onTap;
 
   const KColorVariationButton(
@@ -49,7 +50,7 @@ class KColorVariationButton extends StatelessWidget {
       this.onTap,
       this.isSelected = false,
       required this.color,
-      this.isDisabled = false})
+      this.isDisabled = false, this.radius = 15.0})
       : super(key: key);
 
   @override
@@ -67,7 +68,7 @@ class KColorVariationButton extends StatelessWidget {
           if(!isDisabled) onTap?.call(color);
         },
         child: CircleAvatar(
-          radius: 15,
+          radius: this.radius,
           backgroundColor: color,
           child: isDisabled ? Icon(Icons.close, size: 15.0,): null,
         ),

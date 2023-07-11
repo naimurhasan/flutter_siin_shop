@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_siin_shop/screens/cart_screen/cart_screen.dart';
+import 'package:flutter_siin_shop/screens/cart_screen/cart_view.dart';
 import 'package:flutter_siin_shop/screens/category_screen/category_view.dart';
 import 'package:flutter_siin_shop/screens/home_screen/home_view.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -28,9 +28,10 @@ class _MainScreenState extends State<MainScreen> {
 
   /// sub screens list
   final List<Widget> bottomBarPages = [
+    const CartView(),
     const CategoryView(),
     const HomeView(),
-    const CartScreen(),
+
   ];
 
   @override
@@ -90,58 +91,6 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       ),
-      // extendBody: true,
-      // bottomNavigationBar: AnimatedNotchBottomBar(
-      //   /// Provide NotchBottomBarController
-      //   notchBottomBarController: _controller,
-      //   color: Colors.white,
-      //   showLabel: false,
-      //   notchColor: Colors.white,
-      //   /// restart app if you change removeMargins
-      //   removeMargins: true,
-      //   bottomBarWidth: 500,
-      //   durationInMilliSeconds: 300,
-      //   bottomBarItems: const [
-      //      BottomBarItem(
-      //       inActiveItem: Icon(
-      //         Icons.home_filled,
-      //         color: Colors.blueGrey,
-      //       ),
-      //       activeItem: Icon(
-      //         Icons.home_filled,
-      //         color: Colors.blueAccent,
-      //       ),
-      //       itemLabel: 'Home',
-      //     ),
-      //     BottomBarItem(
-      //       inActiveItem: Icon(
-      //         Icons.grid_view,
-      //         color: Colors.blueGrey,
-      //       ),
-      //       activeItem: Icon(
-      //         Icons.grid_view,
-      //         color: Colors.blueAccent,
-      //       ),
-      //       itemLabel: 'Cats',
-      //     ),
-      //     BottomBarItem(
-      //       inActiveItem: Icon(
-      //         Icons.shopping_cart,
-      //         color: Colors.blueGrey,
-      //       ),
-      //       activeItem: Icon(
-      //         Icons.shopping_cart,
-      //         color: Colors.pink,
-      //       ),
-      //       itemLabel: 'Cart',
-      //     ),
-      //   ],
-      //   onTap: (index) {
-      //     /// update page
-      //     dPrint('current selected index $index');
-      //     _pageController.jumpToPage(index);
-      //   },
-      // ),
     );
   }
 }
