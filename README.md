@@ -13,6 +13,11 @@
 
 ## Preview
 
+Download the Apk
+
+You can download the latest version of the app from the following link:
+- [Download APK](https://github.com/naimurhasan/flutter_siin_shop/releases/download/release/flutter-siin-shop-1.apk)
+
 <table>
   <tr>
     <td>
