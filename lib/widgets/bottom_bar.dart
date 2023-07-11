@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_siin_shop/injection_container.dart';
 import 'package:flutter_siin_shop/screens/home_screen/home_view_model.dart';
-import 'package:flutter_siin_shop/utils/video_sliding_icons.dart';
+import 'package:flutter_siin_shop/utils/icons_helper.dart';
 import 'package:get_it/get_it.dart';
 
 class BottomBar extends StatelessWidget {

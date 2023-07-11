@@ -1,4 +1,3 @@
-
 class Category{
   final String name;
   final int id;

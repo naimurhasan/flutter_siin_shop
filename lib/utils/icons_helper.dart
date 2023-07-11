@@ -13,6 +13,7 @@
 ///
 /// 
 ///
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class VideoSlidingIcons {
@@ -28,4 +29,19 @@ class VideoSlidingIcons {
   static const IconData profile = const IconData(0xe80d, fontFamily: _kFontFam);
   static const IconData reply = const IconData(0xe80e, fontFamily: _kFontFam);
   static const IconData search = const IconData(0xe80f, fontFamily: _kFontFam);
+}
+
+IconData geIconForCategory(String name){
+  switch(name){
+    case "electronics":
+      return Icons.electrical_services;
+    case "jewelery":
+      return Icons.ac_unit;
+    case "men's clothing":
+      return Icons.male;
+    case "women's clothing":
+      return Icons.female;
+    default:
+      return Icons.local_fire_department;
+  }
 }

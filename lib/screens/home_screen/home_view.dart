@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_siin_shop/injection_container.dart';
 import 'package:flutter_siin_shop/screens/home_screen/home_view_model.dart';
-import 'package:flutter_siin_shop/utils/helper_functions.dart';
 import 'package:flutter_siin_shop/widgets/video_card.dart';
 import 'package:stacked/stacked.dart';
 
@@ -18,8 +17,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    // check
-    // feedViewModel.loadVideo(0);
+    feedViewModel.loadVideo(0);
     super.initState();
   }
 

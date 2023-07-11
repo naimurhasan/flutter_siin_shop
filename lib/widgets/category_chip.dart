@@ -4,6 +4,7 @@ import 'package:flutter_siin_shop/injection_container.dart';
 import 'package:flutter_siin_shop/models/category_model.dart';
 import 'package:flutter_siin_shop/screens/category_screen/category_view_model.dart';
 import 'package:flutter_siin_shop/utils/helper_functions.dart';
+import 'package:flutter_siin_shop/utils/icons_helper.dart';
 
 class CatChip extends StatelessWidget {
   final Category category;
@@ -34,7 +35,7 @@ class CatChip extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.local_fire_department, color: isActive ? KColors.primary : KColors.primaryInactive, ),
+            Icon(geIconForCategory(category.name), color: isActive ? KColors.primary : KColors.primaryInactive, ),
             SizedBox(width: 5.0,),
             Text(category.name.capitalize(), style: TextStyle(color: isActive ? KColors.primary : KColors.primaryInactive, ),),
           ],

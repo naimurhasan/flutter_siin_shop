@@ -239,7 +239,7 @@ class ProductDetailView extends StatelessWidget {
                             builder: (context, vm, child) {
                               return vm.cartItems.containsKey(product.id) ? ElevatedButton(onPressed: null, child: Text("Added")) : KAppButton(
                                 onPressed: () {
-                                  locator<CartViewModel>().addToCart(product);
+                                  locator<CartViewModel>().addToCart(product,colorVariation: model.picked);
                                 },
                                 child: Text(
                                   "Add to Cart",
