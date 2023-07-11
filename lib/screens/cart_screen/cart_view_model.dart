@@ -6,12 +6,12 @@ import 'package:flutter_siin_shop/models/product_model.dart';
 import 'package:stacked/stacked.dart';
 
 class CartViewModel extends BaseViewModel {
-  double totalAmount = 109.95;
+  double totalAmount = 10.99;
   int totalItem = 1;
   /// it could be empty added a default product to cart
   /// for demonstration purpose
   Map<int, CartModel> _cartItems = {
-    1: CartModel(
+    8: CartModel(
       product: Product.fromJson(
         {
           "id": 8,

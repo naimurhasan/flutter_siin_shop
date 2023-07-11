@@ -117,6 +117,7 @@ class CartView extends StackedView<CartViewModel> {
   }
 
   createCartList(CartViewModel vm) {
+    dPrint("createCartList vm.cartItems.length: ${vm.cartItems.length}");
     if (vm.cartItems.isEmpty) {
       return Padding(
         padding: const EdgeInsets.all(16.0).copyWith(top: 30.0),
