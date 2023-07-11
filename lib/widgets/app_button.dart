@@ -11,7 +11,8 @@ class KAppButton extends StatelessWidget {
     required this.onPressed,
     required this.child,
     this.borderRadius,
-    this.gradient = const LinearGradient(colors: [Color(0xFFec8031), Color(0xFFcc2867)]),
+    this.gradient =
+        const LinearGradient(colors: [Color(0xFFec8031), Color(0xFFcc2867)]),
   }) : super(key: key);
 
   @override
@@ -32,6 +33,44 @@ class KAppButton extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: borderRadius),
         ),
         child: child,
+      ),
+    );
+  }
+}
+
+class KColorVariationButton extends StatelessWidget {
+  final Color color;
+  final bool isSelected;
+  final bool isDisabled;
+  final Function(Color color)? onTap;
+
+  const KColorVariationButton(
+      {Key? key,
+      this.onTap,
+      this.isSelected = false,
+      required this.color,
+      this.isDisabled = false})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(2.0),
+      decoration: isSelected
+          ? BoxDecoration(
+              border: Border.all(color: color),
+              borderRadius: BorderRadius.circular(100),
+            )
+          : null,
+      child: InkWell(
+        onTap: () {
+          if(!isDisabled) onTap?.call(color);
+        },
+        child: CircleAvatar(
+          radius: 15,
+          backgroundColor: color,
+          child: isDisabled ? Icon(Icons.close, size: 15.0,): null,
+        ),
       ),
     );
   }
