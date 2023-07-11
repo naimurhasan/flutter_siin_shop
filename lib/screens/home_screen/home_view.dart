@@ -19,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     // check
-    feedViewModel.loadVideo(0);
+    // feedViewModel.loadVideo(0);
     super.initState();
   }
 
@@ -54,37 +54,6 @@ class _HomeViewState extends State<HomeView> {
             index = index % (feedViewModel.videoSource!.listVideos.length);
             return VideoCard(video: feedViewModel.videoSource!.listVideos[index],);
           },
-        ),
-        SafeArea(
-          child: Container(
-            padding: EdgeInsets.only(top: 20),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text('Following',
-                      style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.white70)),
-                  SizedBox(
-                    width: 7,
-                  ),
-                  Container(
-                    color: Colors.white70,
-                    height: 10,
-                    width: 1.0,
-                  ),
-                  SizedBox(
-                    width: 7,
-                  ),
-                  Text('For You',
-                      style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white))
-                ]),
-          ),
         ),
       ],
     );

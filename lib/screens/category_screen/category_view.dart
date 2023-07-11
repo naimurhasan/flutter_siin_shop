@@ -69,7 +69,7 @@ class CategoryView extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 6,
                 crossAxisSpacing: 6,
-                height: 210),
+                height: 215),
             itemBuilder: (BuildContext context, int index) {
               return ProductGridItem(product: catViewModel.productList[index],);
             },

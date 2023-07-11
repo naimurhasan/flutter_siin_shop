@@ -10,9 +10,8 @@ import 'package:shimmer/shimmer.dart';
 import 'package:stacked/stacked.dart';
 
 class CartView extends StackedView<CartViewModel> {
-  final bool withScaffold;
-
-  const CartView({Key? key, this.withScaffold = false}) : super(key: key);
+  final bool hasBackButton;
+  const CartView({Key? key, this.hasBackButton = false, }) : super(key: key);
 
   @override
   Widget builder(BuildContext context, CartViewModel viewModel, Widget? child) {
@@ -22,7 +21,7 @@ class CartView extends StackedView<CartViewModel> {
       body: SafeArea(
         child: Column(
           children: [
-            createHeader(viewModel),
+            createHeader(viewModel, context),
             createSubTitle(viewModel),
             Expanded(
                 child: SingleChildScrollView(
@@ -82,13 +81,24 @@ class CartView extends StackedView<CartViewModel> {
     );
   }
 
-  createHeader(CartViewModel vm) {
+  createHeader(CartViewModel vm, context) {
     return Container(
       alignment: Alignment.topLeft,
-      child: Text(
-        "SHOPPING CART",
-        style: CustomTextStyle.textFormFieldBold
-            .copyWith(fontSize: 16, color: Colors.black),
+      child: Row(
+        children: [
+          if(hasBackButton)
+            ...[
+              IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back_rounded)),
+              SizedBox(width: 5.0,),
+            ],
+          Expanded(
+            child: Text(
+              "SHOPPING CART",
+              style: CustomTextStyle.textFormFieldBold
+                  .copyWith(fontSize: 16, color: Colors.black),
+            ),
+          ),
+        ],
       ),
       margin: EdgeInsets.only(left: 12, top: 12),
     );
@@ -262,4 +272,7 @@ class CartView extends StackedView<CartViewModel> {
   CartViewModel viewModelBuilder(BuildContext context) {
     return locator<CartViewModel>();
   }
+
+  @override
+  bool get disposeViewModel => false;
 }

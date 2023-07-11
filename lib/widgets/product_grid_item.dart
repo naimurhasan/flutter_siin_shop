@@ -2,17 +2,21 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_siin_shop/constants/color_const.dart';
+import 'package:flutter_siin_shop/injection_container.dart';
 import 'package:flutter_siin_shop/models/product_model.dart';
+import 'package:flutter_siin_shop/screens/cart_screen/cart_view_model.dart';
 import 'package:flutter_siin_shop/screens/product_detail_screen/product_detail_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:stacked/stacked.dart';
 
 class ProductGridItem extends StatelessWidget {
   final Product product;
-  final int addedToCart;
 
-  const ProductGridItem(
-      {super.key, required this.product, this.addedToCart = 0});
+  const ProductGridItem({
+    super.key,
+    required this.product,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,7 @@ class ProductGridItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(6.0),
           border: Border.all(color: KColors.primaryInactive)),
       child: InkWell(
-        onTap: (){
+        onTap: () {
           context.go('/detail', extra: product);
         },
         child: Column(
@@ -40,7 +44,8 @@ class ProductGridItem extends StatelessWidget {
                           width: double.infinity,
                           color: Colors.white,
                           height: 130,
-                          padding: const EdgeInsets.only(top: 25.0, bottom: 15.0),
+                          padding:
+                              const EdgeInsets.only(top: 25.0, bottom: 15.0),
                           child: Hero(
                             tag: 'product-img-${product.id}',
                             child: CachedNetworkImage(
@@ -49,7 +54,7 @@ class ProductGridItem extends StatelessWidget {
                               placeholder: (ctx, url) => Shimmer.fromColors(
                                 baseColor: Colors.grey.shade300,
                                 highlightColor: Colors.grey.shade100,
-                                child:  Container(
+                                child: Container(
                                   color: Colors.grey,
                                 ),
                               ),
@@ -124,18 +129,23 @@ class ProductGridItem extends StatelessWidget {
                         child: AutoSizeText.rich(
                           TextSpan(
                             text: 'BD ${product.price.toStringAsFixed(2)}  ',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(
-                                  fontWeight: FontWeight.normal,),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.normal,
+                                ),
                             children: [
                               TextSpan(
-                                text: 'BD ${product.oldPrice.toStringAsFixed(2)}',
-                                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                      fontWeight: FontWeight.normal,
-                                      decoration: TextDecoration.lineThrough,
-                                      color: Colors.grey.shade600),
+                                text:
+                                    'BD ${product.oldPrice.toStringAsFixed(2)}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall
+                                    ?.copyWith(
+                                        fontWeight: FontWeight.normal,
+                                        decoration: TextDecoration.lineThrough,
+                                        color: Colors.grey.shade600),
                               ),
                             ],
                           ),
@@ -144,18 +154,23 @@ class ProductGridItem extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      addedToCart == 0
-                          ? Icon(
-                              Icons.add_circle_outline_rounded,
-                              color: Colors.grey.shade500,
-                            )
-                          : CircleAvatar(
-                              radius: 10.0,
-                              child: Text(
-                                addedToCart.toString(),
-                                style: TextStyle(fontSize: 10.0),
-                              ),
-                            ),
+                      ViewModelBuilder<CartViewModel>.reactive(
+                          disposeViewModel: false,
+                          builder: (context, vm, child) {
+                            return InkWell(
+                                onTap: () {
+                                  vm.addToCart(product);
+                                },
+                                child: vm.cartItems.containsKey(product.id) ? CircleAvatar(
+                                  radius: 10.0,
+                                  child: Text(
+                                    vm.cartItems[product.id]!.quantity
+                                        .toString(),
+                                    style: TextStyle(fontSize: 10.0),
+                                  ),
+                                ) : Icon(Icons.add_circle_outline_rounded, color: Colors.grey.shade500,));
+                          },
+                          viewModelBuilder: () => locator<CartViewModel>()),
                       SizedBox(
                         width: 5.0,
                       ),

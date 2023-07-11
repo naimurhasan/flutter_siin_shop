@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_siin_shop/constants/color_const.dart';
+import 'package:flutter_siin_shop/injection_container.dart';
 import 'package:flutter_siin_shop/models/product_model.dart';
+import 'package:flutter_siin_shop/screens/cart_screen/cart_view_model.dart';
 import 'package:flutter_siin_shop/screens/product_detail_screen/product_detail_view_model.dart';
 import 'package:flutter_siin_shop/widgets/app_button.dart';
 import 'package:go_router/go_router.dart';
@@ -27,12 +29,36 @@ class ProductDetailView extends StatelessWidget {
             ),
             centerTitle: true,
             actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.shopping_cart_rounded,
-                    color: Colors.black,
-                  ))
+              ViewModelBuilder<CartViewModel>.reactive(
+                  disposeViewModel: false,
+                  builder: (context, vm, child) {
+                    return Stack(
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              context.push('/cart');
+                            },
+                            icon: Icon(
+                              Icons.shopping_cart_rounded,
+                              color: Colors.black,
+                            )),
+                        if(vm.totalItem > 0)
+                        Positioned(
+                          right: 2,
+                          top: 2,
+                          child: CircleAvatar(
+                            radius: 10.0,
+                            child: Text(
+                              vm.totalItem.toString(),
+                              style: TextStyle(color: Colors.white, fontSize: 9.0),
+                            ),
+                          ),
+                        )
+                      ],
+                    );
+                  },
+                  viewModelBuilder: () => locator<CartViewModel>()),
+
             ],
             leading: IconButton(
               onPressed: () {
@@ -208,13 +234,20 @@ class ProductDetailView extends StatelessWidget {
                       ),
                       Expanded(
                         flex: 3,
-                        child: KAppButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Add to Cart",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
+                        child: ViewModelBuilder<CartViewModel>.reactive(
+                            disposeViewModel: false,
+                            builder: (context, vm, child) {
+                              return vm.cartItems.containsKey(product.id) ? ElevatedButton(onPressed: null, child: Text("Added")) : KAppButton(
+                                onPressed: () {
+                                  locator<CartViewModel>().addToCart(product);
+                                },
+                                child: Text(
+                                  "Add to Cart",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              );
+                            },
+                            viewModelBuilder: () => locator<CartViewModel>()),
                       ),
                       SizedBox(width: 10),
                     ],

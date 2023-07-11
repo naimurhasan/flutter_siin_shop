@@ -8,19 +8,20 @@ import 'package:stacked/stacked.dart';
 class CartViewModel extends BaseViewModel {
   double totalAmount = 109.95;
   int totalItem = 1;
+  /// it could be empty added a default product to cart
+  /// for demonstration purpose
   Map<int, CartModel> _cartItems = {
     1: CartModel(
       product: Product.fromJson(
         {
-          "id": 1,
-          "title": "Fjallraven",
-          "description":
-              "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-          "price": 109.95,
-          "old_price": 131.94,
+          "id": 8,
+          "title": "Pierced",
+          "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
+          "price": 10.99,
+          "old_price": 13.188,
           "off": 20,
-          "category": "men's clothing",
-          "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+          "category": "jewelery",
+          "image": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg"
         },
       ),
       colorVariation: Colors.red,
